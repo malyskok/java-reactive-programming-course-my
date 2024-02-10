@@ -30,4 +30,12 @@ public class Util {
     public static Faker faker(){
         return FAKER;
     }
+
+    public static void sleepSeconds(int secs){
+        try {
+            Thread.sleep(secs * 1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
