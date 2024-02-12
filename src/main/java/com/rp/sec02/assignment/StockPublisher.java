@@ -5,19 +5,19 @@
  * Proin dapibus sapien vel ante. Aliquam erat volutpat. Pellentesque sagittis ligula eget metus.
  * Vestibulum commodo. Ut rhoncus gravida arcu.
  */
-package com.rp.sec02;
+package com.rp.sec02.assignment;
 
 import com.rp.courseutil.Util;
 import reactor.core.publisher.Flux;
 
-import java.util.Arrays;
+import java.time.Duration;
+import java.util.concurrent.atomic.AtomicInteger;
 
-public class Lec03FluxFromListsAndArrays {
-    public static void main(String[] args) {
-        Flux<String> flux = Flux.fromIterable(Arrays.asList("a", "b", "c"));
-        flux.subscribe(Util.onNext());
+public class StockPublisher {
 
-        Flux<Object> flux2 = Flux.fromArray(Arrays.asList(1, 2, 3).toArray());
-        flux2.subscribe(Util.onNext());
+    public static Flux<Integer> getPrice(){
+        AtomicInteger price = new AtomicInteger(100);
+        return Flux.interval(Duration.ofSeconds(1))
+                .map(i-> price.addAndGet(Util.faker().random().nextInt(-5, 5)));
     }
 }

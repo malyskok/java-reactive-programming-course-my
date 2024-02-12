@@ -7,17 +7,17 @@
  */
 package com.rp.sec02;
 
+import com.rp.courseutil.NameGenerator;
 import com.rp.courseutil.Util;
 import reactor.core.publisher.Flux;
 
-import java.util.Arrays;
+import java.util.List;
 
-public class Lec03FluxFromListsAndArrays {
+public class Lec07FluxVsList {
     public static void main(String[] args) {
-        Flux<String> flux = Flux.fromIterable(Arrays.asList("a", "b", "c"));
-        flux.subscribe(Util.onNext());
+//        List<String> names = NameGenerator.getNames(5);
+//        System.out.println(names);
 
-        Flux<Object> flux2 = Flux.fromArray(Arrays.asList(1, 2, 3).toArray());
-        flux2.subscribe(Util.onNext());
+        NameGenerator.getNamesFlux(5).subscribe(Util.onNext());
     }
 }

@@ -10,14 +10,14 @@ package com.rp.sec02;
 import com.rp.courseutil.Util;
 import reactor.core.publisher.Flux;
 
-import java.util.Arrays;
+import java.time.Duration;
 
-public class Lec03FluxFromListsAndArrays {
+public class Lec08FluxInterval {
     public static void main(String[] args) {
-        Flux<String> flux = Flux.fromIterable(Arrays.asList("a", "b", "c"));
-        flux.subscribe(Util.onNext());
+        Flux.interval(Duration.ofSeconds(1))
+                .map(i -> Util.faker().name().fullName())
+                .subscribe(Util.onNext());
 
-        Flux<Object> flux2 = Flux.fromArray(Arrays.asList(1, 2, 3).toArray());
-        flux2.subscribe(Util.onNext());
+        Util.sleepSeconds(5);
     }
 }

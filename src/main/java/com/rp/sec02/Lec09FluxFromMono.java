@@ -9,15 +9,22 @@ package com.rp.sec02;
 
 import com.rp.courseutil.Util;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
-import java.util.Arrays;
-
-public class Lec03FluxFromListsAndArrays {
+public class Lec09FluxFromMono {
     public static void main(String[] args) {
-        Flux<String> flux = Flux.fromIterable(Arrays.asList("a", "b", "c"));
-        flux.subscribe(Util.onNext());
+        Mono<String> mono = Mono.just("abc");
 
-        Flux<Object> flux2 = Flux.fromArray(Arrays.asList(1, 2, 3).toArray());
-        flux2.subscribe(Util.onNext());
+//        doSmth(mono);
+        doSmth(Flux.from(mono));
+
+        Flux.range(1, 10)
+                .filter(i -> i > 3)
+                .next()
+                .subscribe(Util.onNext());
+    }
+
+    private static void doSmth(Flux<String> flux) {
+        flux.subscribe(Util.onNext());
     }
 }
