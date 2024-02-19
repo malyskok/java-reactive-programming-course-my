@@ -33,11 +33,7 @@ public class Util {
     }
 
     public static void sleepSeconds(int secs){
-        try {
-            Thread.sleep(secs * 1000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        sleepMillis(secs * 1000);
     }
 
     public static Subscriber<Object> subscriber(){
@@ -46,5 +42,13 @@ public class Util {
 
     public static Subscriber<Object> subscriber(String name){
         return new DefaultSubscriber(name);
+    }
+
+    public static void sleepMillis(int m) {
+        try {
+            Thread.sleep(m);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
